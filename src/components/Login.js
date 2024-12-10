@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState(''); // State to store success message
+  const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const users = [
     { username: 'admin', password: 'admin123' },
@@ -21,11 +23,14 @@ function Login() {
     );
 
     if (user) {
-      setSuccessMessage(`Login successful! Welcome, ${trimmedUsername}`); // Set success message
-      setError(''); // Clear error message
+      setSuccessMessage(`Login successful! Welcome, ${trimmedUsername}`);
+      setError('');
+      setTimeout(() => {
+        navigate('/amendments'); // Redirect to /amendments after a successful login
+      }, 1000); // Delay to show the success message (optional)
     } else {
       setError('Invalid username or password');
-      setSuccessMessage(''); // Clear any previous success message
+      setSuccessMessage('');
     }
   };
 
@@ -103,8 +108,6 @@ function Login() {
           Login
         </button>
         {error && <p style={{ color: 'red', marginTop: '15px', fontSize: '16px' }}>{error}</p>}
-
-        {/* Display login success message */}
         {successMessage && (
           <p style={{ color: 'green', marginTop: '15px', fontSize: '16px' }}>
             {successMessage}

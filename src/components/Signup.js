@@ -23,8 +23,8 @@ function Signup() {
     }
 
     setError('');
-    setSuccess('Signup successful! Redirecting to login...');
-    setTimeout(() => navigate('/login'), 2000); // Redirect after 2 seconds
+    setSuccess('Signup successful! Redirecting to Amendments...');
+    setTimeout(() => navigate('/amendments'), 2000); // Redirect to /amendments after 2 seconds
   };
 
   return (
